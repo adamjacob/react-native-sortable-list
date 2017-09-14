@@ -194,6 +194,7 @@ export default class SortableList extends Component {
         <ScrollView
           refreshControl={refreshControl}
           ref={this._onRefScrollView}
+          keyboardShouldPersistTaps={'always'}
           horizontal={horizontal}
           contentContainerStyle={contentContainerStyle}
           scrollEventThrottle={2}
