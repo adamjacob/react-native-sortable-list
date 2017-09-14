@@ -60,9 +60,6 @@ export default class Row extends Component {
       this._wasLongPress = false;
 
       this._longPressTimer = setTimeout(() => {
-        if (gestureState.x0 > 100) {
-          return;
-        }
         this._wasLongPress = true;
         this._target = e.nativeEvent.target;
         this._prevGestureState = {
@@ -218,7 +215,7 @@ export default class Row extends Component {
 
   _isTouchInsideElement({nativeEvent}) {
     return this._layout &&
-      nativeEvent.locationX >= 100 &&
+      nativeEvent.locationX >= 0 &&
       nativeEvent.locationX <= this._layout.width &&
       nativeEvent.locationY >= 0 &&
       nativeEvent.locationY <= this._layout.height;
@@ -226,7 +223,7 @@ export default class Row extends Component {
 
   _isTouchLeftSideOfElement({nativeEvent}) {
     return this._layout &&
-      nativeEvent.locationX >= 100 &&
+      nativeEvent.locationX >= 0 &&
       nativeEvent.locationX <= 50 &&
       nativeEvent.locationY >= 0 &&
       nativeEvent.locationY <= this._layout.height;
