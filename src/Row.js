@@ -97,18 +97,6 @@ export default class Row extends Component {
       if (this._wasLongPress) {
         this._toggleActive(e, gestureState);
 
-      } else if(this._isTouchLeftSideOfElement(e)){
-        this._cancelLongPress();
-
-        if (this.props.onLeftSidePress) {
-          this.props.onLeftSidePress();
-        }
-      } else if (this._isTouchInsideElement(e)) {
-        this._cancelLongPress();
-
-        if (this.props.onPress) {
-          this.props.onPress();
-        }
       }
     },
 
