@@ -20,6 +20,7 @@ export default class Row extends Component {
     onActivate: PropTypes.func,
     onLayout: PropTypes.func,
     onPress: PropTypes.func,
+    onLeftSidePress: PropTypes.func,
 
     // Will be called, when user (directly) move the view.
     onMove: PropTypes.func,
@@ -96,6 +97,12 @@ export default class Row extends Component {
       if (this._wasLongPress) {
         this._toggleActive(e, gestureState);
 
+      } else if(this._isTouchLeftSideOfElement(e)){
+        this._cancelLongPress();
+
+        if (this.props.onLeftSidePress) {
+          this.props.onLeftSidePress();
+        }
       } else if (this._isTouchInsideElement(e)) {
         this._cancelLongPress();
 
@@ -210,6 +217,14 @@ export default class Row extends Component {
     return this._layout &&
       nativeEvent.locationX >= 0 &&
       nativeEvent.locationX <= this._layout.width &&
+      nativeEvent.locationY >= 0 &&
+      nativeEvent.locationY <= this._layout.height;
+  }
+
+  _isTouchLeftSideOfElement({nativeEvent}) {
+    return this._layout &&
+      nativeEvent.locationX >= 0 &&
+      nativeEvent.locationX <= 50 &&
       nativeEvent.locationY >= 0 &&
       nativeEvent.locationY <= this._layout.height;
   }
