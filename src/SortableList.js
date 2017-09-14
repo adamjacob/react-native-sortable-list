@@ -261,6 +261,7 @@ export default class SortableList extends Component {
           onLayout={!rowsLayouts ? this._onLayoutRow.bind(this, key) : null}
           onActivate={this._onActivateRow.bind(this, key, index)}
           onPress={this._onPressRow.bind(this, key)}
+          onLeftSidePress={this._onLeftSidePressRow.bind(this, key)}
           onRelease={this._onReleaseRow.bind(this, key)}
           onMove={this._onMoveRow}>
           {renderRow({
@@ -555,6 +556,12 @@ export default class SortableList extends Component {
   _onPressRow = (rowKey) => {
     if (this.props.onPressRow) {
       this.props.onPressRow(rowKey);
+    }
+  };
+
+  _onLeftSidePressRow = (rowKey) => {
+    if (this.props.onLeftSidePressRow) {
+      this.props.onLeftSidePressRow(rowKey);
     }
   };
 
