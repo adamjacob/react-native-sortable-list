@@ -71,12 +71,9 @@ export default class Row extends Component {
       }, this.props.activationTime);
     },
 
-    onMoveShouldSetPanResponderCapture: (evt, gestureState) => {
-      return Math.abs(gestureState.dx) > 5;
-    },
-
     onPanResponderMove: (e, gestureState) => {
       if (
+        !Math.abs(gestureState.dx) > 5 ||
         !this._active ||
         gestureState.numberActiveTouches > 1 ||
         e.nativeEvent.target !== this._target
