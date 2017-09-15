@@ -46,7 +46,7 @@ export default class Row extends Component {
   _panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => !this._isDisabled(),
 
-    onMoveShouldSetPanResponder: () => !this._isDisabled(),
+    onMoveShouldSetPanResponder: () => false,
 
     onShouldBlockNativeResponder: () => {
       // Returns whether this component should block native components from becoming the JS
@@ -73,7 +73,6 @@ export default class Row extends Component {
 
     onPanResponderMove: (e, gestureState) => {
       if (
-        !Math.abs(gestureState.dx) > 5 ||
         !this._active ||
         gestureState.numberActiveTouches > 1 ||
         e.nativeEvent.target !== this._target
