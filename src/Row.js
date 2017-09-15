@@ -72,8 +72,8 @@ export default class Row extends Component {
     },
 
     onMoveShouldSetPanResponderCapture: (evt, gestureState) => {
-     return gestureState.dx != 0 && gestureState.dy != 0;
-   },
+      return Math.abs(gestureState.dx) > 5;
+    },
 
     onPanResponderMove: (e, gestureState) => {
       if (
